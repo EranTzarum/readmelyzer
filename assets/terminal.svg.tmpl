@@ -1,0 +1,15 @@
+<!-- Terminal-style "screenshot" of CLI output. Copy to docs/assets/<name>.svg, replace the <text> lines
+     (24 px apart), keep height = 90 + 24 * lines. Colors: green #3fb950 ok, orange #f0883e warn, purple #d2a8ff labels. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="210" viewBox="0 0 860 210" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14">
+  <rect width="860" height="210" rx="10" fill="#0d1117"/>
+  <rect width="860" height="34" rx="10" fill="#161b22"/>
+  <circle cx="20" cy="17" r="6" fill="#ff5f56"/><circle cx="40" cy="17" r="6" fill="#ffbd2e"/><circle cx="60" cy="17" r="6" fill="#27c93f"/>
+  <text x="430" y="22" text-anchor="middle" fill="#8b949e" font-size="12">{{COMMAND}}</text>
+  <g fill="#c9d1d9">
+    <text x="20" y="66"><tspan fill="#8b949e">$ </tspan>{{COMMAND}}</text>
+    <text x="20" y="96">{{LINE 1}} <tspan fill="#3fb950" font-weight="bold">OK</tspan></text>
+    <text x="20" y="120">{{LINE 2}} <tspan fill="#f0883e" font-weight="bold">WARN</tspan> — {{detail}}</text>
+    <text x="20" y="144"><tspan fill="#d2a8ff">{{LABEL}}:</tspan> {{detail}}</text>
+    <text x="20" y="180"><tspan fill="#8b949e">{{footer, e.g. exit 0}}</tspan></text>
+  </g>
+</svg>

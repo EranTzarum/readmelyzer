@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writing READMEs"
+  short_description: "Write or update a README in the fixed landing-page shape"
+  default_prompt: "Use $writing-readmes to write or update this repo's README.md, then run its checker."
