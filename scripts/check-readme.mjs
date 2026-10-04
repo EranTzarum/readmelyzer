@@ -10,7 +10,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const imgsIn = (text) => [...text.matchAll(/<img\s[^>]*src="([^"]+)"/g)].map((m) => m[1]);
-const DRAWN = /<(path|circle|ellipse|polygon|polyline|line)\b/;
+const DRAWN = /<(rect|path|circle|ellipse|polygon|polyline|line)\b/g; // first match is usually the background tile
 
 export function loadPrivateTerms(file = join(homedir(), ".readmelyzer", "private-terms.txt")) {
   if (!existsSync(file)) return [];
@@ -47,7 +47,7 @@ export function check(root, { file = "README.md", isPublic = false, allFiles = f
   if (existsSync(logoPath)) {
     const svg = readFileSync(logoPath, "utf8");
     if (svg.includes("{{")) miss("logo: template tokens left in docs/assets/logo.svg");
-    if (!DRAWN.test(svg)) miss("logo: draw a pictogram (path/circle/polygon...), not only text or a tile");
+    if ((svg.match(DRAWN) ?? []).length < 2) miss("logo: draw a pictogram (shapes beyond the background tile), not only text or a tile");
     const parent = dirname(resolve(root));
     for (const sib of existsSync(parent) ? readdirSync(parent) : []) {
       const other = join(parent, sib, "docs", "assets", "logo.svg");
