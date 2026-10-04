@@ -1,14 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="readmelyzer logo">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#DB2777"/>
-    </linearGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect x="4" y="4" width="120" height="120" rx="30" fill="url(#g)"/>
-  <rect x="4" y="4" width="120" height="120" rx="30" fill="url(#shine)"/>
-  <g fill="none" stroke="#fff" stroke-width="5" opacity=".9"><circle cx="96" cy="32" r="12"/><path d="M105 41l9 9" stroke-linecap="round"/></g>
-  <text x="58" y="92" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#fff" letter-spacing="-2">R</text>
+  <rect x="2" y="2" width="124" height="124" rx="32" fill="#FFE4E6"/>
+  <rect x="24" y="18" width="60" height="80" rx="10" fill="#fff" stroke="#1E1B4B" stroke-width="6"/>
+  <path d="M37 38h34M37 52h34M37 66h20" stroke="#1E1B4B" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="80" cy="80" r="19" fill="#fff" stroke="#F43F5E" stroke-width="8"/>
+  <path d="M94 94l14 14" stroke="#F43F5E" stroke-width="11" stroke-linecap="round"/>
+  <path d="M103 12l4.5 10.5 10.5 4.5-10.5 4.5-4.5 10.5-4.5-10.5-10.5-4.5 10.5-4.5z" fill="#F43F5E"/>
 </svg>

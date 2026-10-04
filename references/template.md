@@ -1,3 +1,5 @@
+<!-- Module library, not a fixed order. references/archetypes.md picks the modules and their order for this
+     project; drop any module with nothing true to say. {{ACCENT_HEX}} = the brief's accent without '#'. -->
 <div align="center">
 
 <img src="docs/assets/logo.svg" alt="{{NAME}} logo" width="112">
@@ -7,7 +9,7 @@
 **{{HOOK — the benefit in one bold line, e.g. "Long prompts in, finished work out."}}**
 {{ONE PLAIN LINE — what the reader gets, in words a newcomer knows.}}
 
-[![{{Runtime}}](https://img.shields.io/badge/{{Runtime}}-{{kind}}-8A63D2)](#-quick-start)
+[![{{Runtime}}](https://img.shields.io/badge/{{Runtime}}-{{kind}}-{{ACCENT_HEX}})](#-quick-start)
 [![Tests](https://img.shields.io/badge/tests-{{N}}%20passing-brightgreen)](#-verify)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
