@@ -4,14 +4,14 @@
   </defs>
   <rect width="980" height="220" fill="#ffffff"/>
   <rect x="14" y="14" width="800" height="170" rx="12" fill="#f4f6fb" stroke="#9aa7c7"/>
-  <text x="30" y="38" fill="#3b4a6b" font-weight="bold">THE RECIPE — same shape every time, project substance inside</text>
+  <text x="30" y="38" fill="#3b4a6b" font-weight="bold">READ → DESIGN → WRITE → CHECK, same shape every time</text>
   <g font-size="12" fill="#1f2937">
     <rect x="30" y="54" width="118" height="110" rx="8" fill="#fff" stroke="#9aa7c7"/>
     <text x="89" y="74" text-anchor="middle" font-weight="bold">1 · Read</text>
     <text x="89" y="96" text-anchor="middle">tree, manifest,</text><text x="89" y="112" text-anchor="middle">tests, docs —</text><text x="89" y="128" text-anchor="middle">facts only</text>
     <rect x="160" y="54" width="118" height="110" rx="8" fill="#fff" stroke="#9aa7c7"/>
-    <text x="219" y="74" text-anchor="middle" font-weight="bold">2 · Header</text>
-    <text x="219" y="96" text-anchor="middle">centered title,</text><text x="219" y="112" text-anchor="middle">tagline, badges,</text><text x="219" y="128" text-anchor="middle">TL;DR</text>
+    <text x="219" y="74" text-anchor="middle" font-weight="bold">2 · Face</text>
+    <text x="219" y="96" text-anchor="middle">logo from template,</text><text x="219" y="112" text-anchor="middle">bold hook, badges,</text><text x="219" y="128" text-anchor="middle">at-a-glance TL;DR</text>
     <rect x="290" y="54" width="118" height="110" rx="8" fill="#fff" stroke="#9aa7c7"/>
     <text x="349" y="74" text-anchor="middle" font-weight="bold">3 · Visuals</text>
     <text x="349" y="96" text-anchor="middle">SVG hero from</text><text x="349" y="112" text-anchor="middle">template, terminal</text><text x="349" y="128" text-anchor="middle">SVG of real output</text>
@@ -20,7 +20,7 @@
     <text x="479" y="96" text-anchor="middle">Why · Features ·</text><text x="479" y="112" text-anchor="middle">Quick start · Usage</text><text x="479" y="128" text-anchor="middle">· How it works</text>
     <rect x="550" y="54" width="118" height="110" rx="8" fill="#fff" stroke="#9aa7c7"/>
     <text x="609" y="74" text-anchor="middle" font-weight="bold">5 · Tail</text>
-    <text x="609" y="96" text-anchor="middle">repo map · Verify ·</text><text x="609" y="112" text-anchor="middle">Extend · FAQ ·</text><text x="609" y="128" text-anchor="middle">License</text>
+    <text x="609" y="96" text-anchor="middle">Verify · Extend ·</text><text x="609" y="112" text-anchor="middle">FAQ as fold-outs ·</text><text x="609" y="128" text-anchor="middle">License</text>
     <rect x="680" y="54" width="118" height="110" rx="8" fill="#fff" stroke="#9aa7c7"/>
     <text x="739" y="74" text-anchor="middle" font-weight="bold">6 · Check</text>
     <text x="739" y="96" text-anchor="middle">check-readme.mjs</text><text x="739" y="112" text-anchor="middle">one MISSING line</text><text x="739" y="128" text-anchor="middle">per gap, fix all</text>

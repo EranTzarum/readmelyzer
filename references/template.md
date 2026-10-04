@@ -1,36 +1,41 @@
 <div align="center">
 
-# {{EMOJI}} {{NAME}}
+<img src="docs/assets/logo.svg" alt="{{NAME}} logo" width="112">
 
-**{{TAGLINE — what it is, one bold line.}}**
-{{SECOND LINE — what it does for the reader, plain words.}}
+# {{NAME}}
 
-[![{{Platform}}](https://img.shields.io/badge/{{Platform}}-{{kind}}-8A63D2)](#quick-start)
-[![Node](https://img.shields.io/badge/node-%E2%89%A518-339933)](#quick-start)
-[![Tests](https://img.shields.io/badge/tests-{{N}}%20passing-brightgreen)](#verify)
+**{{HOOK — the benefit in one bold line, e.g. "Long prompts in, finished work out."}}**
+{{ONE PLAIN LINE — what the reader gets, in words a newcomer knows.}}
+
+[![{{Runtime}}](https://img.shields.io/badge/{{Runtime}}-{{kind}}-8A63D2)](#-quick-start)
+[![Tests](https://img.shields.io/badge/tests-{{N}}%20passing-brightgreen)](#-verify)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>
 
 ---
 
-## TL;DR
+## ⚡ TL;DR
 
-{{3–5 sentences. What you type or run. What happens. What you get. Bold the two or three nouns that matter.}}
+| 🧑 You do | ⚙️ It does | 🎁 You get |
+|---|---|---|
+| {{the one command or action}} | {{what happens, in one line}} | {{the outcome you can see}} |
+
+{{At most two sentences of context. Bold the two nouns that matter.}}
 
 <p align="center">
-  <img src="docs/assets/{{hero}}.svg" alt="{{what the picture shows}}" width="{{980}}">
+  <img src="docs/assets/{{hero}}.svg" alt="{{what the picture shows}}" width="980">
 </p>
 
 ---
 
-## Why
+## 🤔 Why
 
-{{One or two sentences of context.}}
+{{One sentence: the situation before this project existed.}}
 
-| 🔥 What went wrong | 🕒 Found | 💸 Cost |
+| 🔥 What went wrong | 📍 Where | 💸 Cost |
 |---|---|---|
-| {{pain}} | {{when}} | {{cost}} |
+| {{real pain}} | {{project / date}} | {{what it cost}} |
 
 {{One sentence: how this project answers each row.}}
 
@@ -38,8 +43,8 @@
 
 ## ✨ Features
 
-- **{{Lead words}}** — {{one line naming the mechanism: file, flag, command}}.
-- **{{Lead words}}** — {{…}}.
+- 🧩 **{{Lead words.}}** {{one line naming the mechanism: file, flag, command}}.
+- 🛡️ **{{Lead words.}}** {{…}}.
 
 ---
 
@@ -55,6 +60,9 @@
 # 3. first run
 {{first command}}
 ```
+
+> [!TIP]
+> {{The shortcut or gotcha people miss on day one.}}
 
 <details>
 <summary><b>{{Other platforms / harnesses}}</b></summary>
@@ -73,10 +81,8 @@
 |---|---|
 | `{{cmd}}` | {{…}} |
 
-### {{What the output looks like}}
-
 <p align="center">
-  <img src="docs/assets/{{terminal}}.svg" alt="{{…}}" width="860">
+  <img src="docs/assets/{{terminal}}.svg" alt="{{real output of the command below}}" width="860">
 </p>
 
 ```bash
@@ -95,16 +101,16 @@ sequenceDiagram
     {{Tool}}-->>You: {{…}}
 ```
 
-1. **{{Idea}}** — {{why it matters}}.
-2. **{{Idea}}** — {{…}}.
+1. **{{Idea.}}** {{why it matters}}.
+2. **{{Idea.}}** {{…}}.
 
-| # | {{Stage / Module}} | Takes | Produces |
-|---|---|---|---|
-| 0 | **{{…}}** | {{…}} | `{{file}}` |
+| Part | Takes | Produces |
+|---|---|---|
+| `{{file}}` | {{…}} | {{…}} |
 
 ---
 
-## 🗂 What lands in your project
+## 📦 What lands in your project
 
 ```
 {{path}}              {{what it is, in a few words}}
@@ -114,9 +120,14 @@ sequenceDiagram
 
 ## 🗂 Repository map
 
+<details>
+<summary><b>Show the tree</b></summary>
+
 ```
 {{file}}              {{purpose}}
 ```
+
+</details>
 
 ---
 
@@ -126,7 +137,7 @@ sequenceDiagram
 {{test command}}
 ```
 
-{{One or two sentences: what the test proves.}}
+{{One or two sentences: what passing proves.}}
 
 ---
 
@@ -140,16 +151,30 @@ sequenceDiagram
 
 ## ❓ FAQ
 
-**Does it overwrite my files?** {{…}}
+<details><summary><b>Does it overwrite my files?</b></summary>
 
-**Does it touch secrets / commit / deploy?** {{…}}
+{{one-line answer}}
+</details>
 
-**What if I already have {{…}}?** {{…}}
+<details><summary><b>Does it touch secrets, commit or deploy?</b></summary>
 
-**{{Platform question}}?** {{…}}
+{{…}}
+</details>
+
+<details><summary><b>What if I already have {{…}}?</b></summary>
+
+{{…}}
+</details>
+
+<details><summary><b>{{Platform question}}?</b></summary>
+
+{{…}}
+</details>
 
 ---
 
 ## 📄 License
 
 [MIT](LICENSE) © {{year}} {{owner}}
+
+<div align="center"><sub>{{one warm closing line, e.g. "Made for agents that should finish what they start."}}</sub></div>

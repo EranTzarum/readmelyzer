@@ -1,58 +1,58 @@
 <div align="center">
 
-# 📘 writing-readmes
+<img src="docs/assets/logo.svg" alt="readmelyzer logo" width="112">
 
-**A skill that makes AI coding agents write READMEs in one fixed, newcomer-friendly shape.**
-Ask Claude Code, Codex or Cursor for a README and get a landing page, not a wall of headings.
+# readmelyzer
 
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-8A63D2)](#quick-start)
-[![Codex CLI](https://img.shields.io/badge/Codex%20CLI-compatible-10a37f)](#quick-start)
-[![Cursor](https://img.shields.io/badge/Cursor-compatible-000000)](#quick-start)
-[![Node](https://img.shields.io/badge/node-%E2%89%A518-339933)](#quick-start)
+**READMEs people actually enjoy reading.**
+Ask your coding agent for a README and get a landing page with its own logo, not a wall of headings.
+
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-8A63D2)](#-quick-start)
+[![Codex CLI](https://img.shields.io/badge/Codex%20CLI-compatible-10a37f)](#-quick-start)
+[![Cursor](https://img.shields.io/badge/Cursor-compatible-000000)](#-quick-start)
+[![Tests](https://img.shields.io/badge/tests-8%20passing-brightgreen)](#-verify)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>
 
 ---
 
-## TL;DR
+## ⚡ TL;DR
 
-Install this folder into your agent's skill root. From then on, any request like *"write a README"*,
-*"update the README"* or *"make the README professional"* triggers the recipe: the agent reads the repo,
-fills a **fixed section order** (header + badges, TL;DR, SVG hero, Why, Features, Quick start, Usage,
-How it works, repo map, Verify, Extend, FAQ, License), draws the visuals as **hand-written SVGs** from
-templates, and runs a **structural checker** that prints one `MISSING:` line per gap until the shape is complete.
+| 🧑 You do | ⚙️ It does | 🎁 You get |
+|---|---|---|
+| Say *"write a README"* (or *"readmelyzer"*) | Reads the repo, draws a logo and two SVGs, fills a fixed shape, runs a checker | A skimmable landing page where every claim traces to a file |
+
+It works in **Claude Code, Codex CLI and Cursor**. The checker prints one `MISSING:` line per gap until the shape is complete.
 
 <p align="center">
-  <img src="docs/assets/recipe.svg" alt="The recipe: read, header, visuals, body, tail, check" width="980">
+  <img src="docs/assets/recipe.svg" alt="Read, face, visuals, body, tail, check" width="980">
 </p>
 
 ---
 
-## Why
+## 🤔 Why
 
-Left alone, an agent writes a README that mirrors the file tree: six plain headings, no summary, no
-picture, no install-and-verify, no FAQ, no license. Measured on a small fixture project:
+Left alone, an agent writes a README that mirrors the file tree. Measured on a small fixture project:
 
-| 🔥 Without the skill | 🕒 With the skill |
+| 🔥 Without the skill | ✅ With the skill |
 |---|---|
-| Headings: Project layout, Getting started, Gates, Database, Agent workspace, Documentation map | Fourteen-part recipe in order, TL;DR first |
-| Badges 0 · TL;DR no · image no · FAQ no · license no | Badges 4 · two SVGs · FAQ · MIT license |
-| Checker: 20 `MISSING:` lines | Checker: passes on the first run |
+| Headings copied from folders: Project layout, Getting started, Gates… | A fixed recipe in reading order, TL;DR first |
+| 0 badges · no summary · no picture · no FAQ · no license | Logo, badges, two SVGs, FAQ, MIT license |
+| Checker: 20 `MISSING:` lines | Checker: passes |
 
-The shape is not decoration. A newcomer needs, in this order: what it is, what it looks like, why it
-exists, how to install and verify, how to use it, how it works, what to do when it goes wrong.
+The old version (`writing-readmes`) fixed the structure but still read like a spec sheet. readmelyzer adds a face and a voice: a logo per project, a hook line, an at-a-glance table, callouts and fold-out FAQs.
 
 ---
 
 ## ✨ Features
 
-- **Fixed recipe, fourteen parts** — `SKILL.md` states what the output *is*, in order; sections with nothing true to say are dropped, never padded.
-- **Structural checker** — `scripts/check-readme.mjs` verifies header, badges, TL;DR, images that exist on disk, every required section, a verify step, a usage table, bold FAQ questions and a LICENSE link. Exit 1 with one line per gap.
-- **SVG templates instead of screenshots** — `assets/flow.svg.tmpl` (pipeline hero) and `assets/terminal.svg.tmpl` (CLI output) render on every host; no rendering tool, no Mermaid-only diagrams.
-- **Facts only** — the agent reads the tree, manifest, tests and docs first; every claim traces to a file; no invented numbers.
-- **Update mode** — an existing README keeps every true fact and link, gets restructured into the recipe, and loses stale claims.
-- **Works in three harnesses** — Claude Code, Codex CLI and Cursor, same folder, no build, no dependencies.
+- 🎨 **A logo for every project.** `assets/logo.svg.tmpl` has 8 palettes and 7 motifs; each repo gets its own colors and monogram.
+- 🪝 **Hook first.** The header leads with the benefit in one bold line, then an at-a-glance *You do · It does · You get* table.
+- 🗣️ **A voice guide.** `SKILL.md` has a Do/Don't table: second person, short sentences, terms explained the first time.
+- 🖼️ **Visuals that always render.** Hand-written SVGs from `assets/flow.svg.tmpl` and `assets/terminal.svg.tmpl`; Mermaid only as a second diagram.
+- 🔎 **A checker that is the definition of done.** `scripts/check-readme.mjs` checks the logo, hook, table, sections, callout, FAQ and paragraph length.
+- 📏 **Facts only.** The agent reads the tree, manifest, tests and docs first. No invented numbers.
 
 ---
 
@@ -60,26 +60,29 @@ exists, how to install and verify, how to use it, how it works, what to do when 
 
 ```bash
 # 1. install (Claude Code)
-git clone https://github.com/EranTzarum/writing-readmes.git ~/.claude/skills/writing-readmes
+git clone https://github.com/EranTzarum/readmelyzer.git ~/.claude/skills/readmelyzer
 
-# 2. verify — run the checker on this repo's own README
-node ~/.claude/skills/writing-readmes/scripts/check-readme.mjs ~/.claude/skills/writing-readmes
-# README shape complete (5 badges, 2 images, 10 sections)
+# 2. verify: the checker passes on this repo's own README
+node ~/.claude/skills/readmelyzer/scripts/check-readme.mjs ~/.claude/skills/readmelyzer
+# README shape complete (logo, 5 badges, 3 images, 10 sections)
 
-# 3. first use — in any repo, inside your agent:
+# 3. first use: in any repo, ask your agent
 #    "write a README for this project"
 ```
+
+> [!TIP]
+> Updating an old README? Say *"update the README"*. Every true fact and link is kept and stale claims are removed. An existing logo is kept unless you ask for a new one.
 
 <details>
 <summary><b>Install for Codex CLI and Cursor too</b></summary>
 
-Copy (or clone) the same folder into each harness's user skill root. The folder name must stay `writing-readmes`.
+Copy the same folder into each harness's skill root. The folder name must stay `readmelyzer`.
 
 | Harness | Skill root |
 |---|---|
-| Claude Code | `~/.claude/skills/writing-readmes` |
-| Codex CLI | `~/.codex/skills/writing-readmes` |
-| Cursor | `~/.cursor/skills/writing-readmes` |
+| Claude Code | `~/.claude/skills/readmelyzer` |
+| Codex CLI | `~/.codex/skills/readmelyzer` |
+| Cursor | `~/.cursor/skills/readmelyzer` |
 
 </details>
 
@@ -89,18 +92,16 @@ Copy (or clone) the same folder into each harness's user skill root. The folder 
 
 | You say | What the agent does |
 |---|---|
-| "write a README" / "create a README" | reads the repo, writes `README.md` from `references/template.md`, draws `docs/assets/*.svg`, runs the checker |
-| "update / improve / rewrite the README" | keeps every true fact and link, restructures into the recipe, deletes stale claims, runs the checker |
-| "check the README" | runs `scripts/check-readme.mjs` and reports the `MISSING:` lines |
-
-### What the checker prints
+| "write a README" / "readmelyzer" | Reads the repo, draws `docs/assets/logo.svg` and the visuals, writes `README.md`, runs the checker |
+| "update / improve / redesign the README" | Keeps every true fact and link, moves them into the recipe, runs the checker |
+| "check the README" | Runs `scripts/check-readme.mjs` and reports the `MISSING:` lines |
 
 <p align="center">
-  <img src="docs/assets/check-output.svg" alt="check-readme.mjs before and after: MISSING lines, then README shape complete" width="860">
+  <img src="docs/assets/check-output.svg" alt="The checker on the old README (4 MISSING lines), then on the new one (complete)" width="860">
 </p>
 
 ```bash
-node ~/.claude/skills/writing-readmes/scripts/check-readme.mjs <repo-root> [--file README.md]
+node ~/.claude/skills/readmelyzer/scripts/check-readme.mjs <repo-root> [--file README.md]
 ```
 
 ---
@@ -114,86 +115,102 @@ sequenceDiagram
     participant check as check-readme.mjs
     You->>Agent: "write / update the README"
     Agent->>Agent: read tree, manifest, tests, docs
-    Agent->>Agent: fill references/template.md, draw docs/assets/*.svg
+    Agent->>Agent: draw logo.svg, fill template.md, draw SVGs
     Agent->>check: run
     check-->>Agent: MISSING lines (or "shape complete")
-    Agent->>Agent: fix every line
-    Agent->>You: README.md + assets
+    Agent->>You: README.md + docs/assets/
 ```
 
-1. **A recipe, not a prohibition list.** Telling an agent "don't write a wall of headings" does not work; telling it exactly which parts the output has, in order, does.
-2. **The checker is the definition of done.** Structure is mechanical, so a script owns it; the agent spends its judgment on content.
-3. **Visuals that always render.** Two small SVG templates cover a pipeline and a terminal; the agent edits text nodes, nothing else.
+1. **A recipe, not a list of don'ts.** Telling an agent which parts the output has, in order, works. Telling it what to avoid does not.
+2. **A script owns the structure.** The checker handles the mechanical part, so the agent spends its judgment on the words.
+3. **A face for every repo.** Distinct palettes make a workspace of repos recognisable at a glance.
 
-| Part | Required? | What it holds |
+| Part | Takes | Produces |
 |---|---|---|
-| Centered header + badges | yes | name, tagline, what it does for the reader, 3+ shields.io badges |
-| TL;DR | yes | 3–5 sentences: what you run, what happens, what you get |
-| Hero visual | yes | one SVG/PNG under `docs/assets/`, in the first 40 lines |
-| Why | yes | the problem, as a table when there are several concrete pains |
-| Features | yes | bold lead words, one line each, naming the mechanism |
-| Quick start | yes | fenced install → verify → first command; `<details>` for other platforms |
-| Usage | yes | command table + terminal-style SVG of real output |
-| How it works | yes | one Mermaid diagram, 2–4 numbered ideas, a stage/module table |
-| What lands in your project / API | conditional | only if the project writes files elsewhere, or is a library |
-| Repository map | yes | fenced tree with a comment per line |
-| Verify | yes | the command that passes today and what it proves |
-| Extend | yes | three bullets naming the file to touch |
-| FAQ | yes | 4+ bold questions: overwrite, secrets, existing project, platform |
-| License | yes | link to `LICENSE`; MIT added if none exists |
+| `SKILL.md` | your request | the recipe, voice guide and rules the agent follows |
+| `references/template.md` | — | the skeleton with `{{slots}}` |
+| `assets/logo.svg.tmpl` | palette, monogram, motif | `docs/assets/logo.svg` |
+| `assets/flow.svg.tmpl`, `assets/terminal.svg.tmpl` | stage names, real output | hero and output SVGs |
+| `scripts/check-readme.mjs` | repo root | `MISSING:` lines, or "shape complete" |
 
 ---
 
 ## 🗂 Repository map
 
+<details>
+<summary><b>Show the tree</b></summary>
+
 ```
-SKILL.md                     the recipe, rules, common mistakes — what the agent reads
-references/template.md       the skeleton with {{slots}} the agent fills
-assets/flow.svg.tmpl         pipeline / stages hero template
-assets/terminal.svg.tmpl     terminal-style output template
-scripts/check-readme.mjs     structural checker (node, no dependencies)
-agents/openai.yaml           Codex display metadata
-docs/assets/                 this README's own images
+SKILL.md                        recipe, voice guide, rules: what the agent reads
+references/template.md          skeleton with {{slots}}
+assets/logo.svg.tmpl            logo template: 8 palettes, 7 motifs
+assets/flow.svg.tmpl            pipeline hero template
+assets/terminal.svg.tmpl        terminal-output template
+scripts/check-readme.mjs        structural checker (node, no dependencies)
+scripts/check-readme.test.mjs   checker tests (node:test)
+agents/openai.yaml              Codex display metadata
+docs/assets/                    this README's own logo and images
 ```
+
+</details>
 
 ---
 
 ## 🧪 Verify
 
 ```bash
+node --test scripts/check-readme.test.mjs
 node scripts/check-readme.mjs .
 ```
 
-Proves this repo's README follows its own recipe. To test the skill end to end, ask an agent for a README
-on any small project without the skill installed, then with it, and run the checker on both: the first
-prints a list of `MISSING:` lines, the second prints `README shape complete`.
+The tests prove that a complete README passes. They also prove that a missing logo, missing at-a-glance table, missing callout, too few FAQ questions, a long paragraph or filler each get reported. The second command proves this README follows its own recipe.
 
 ---
 
 ## 🧩 Extend
 
-- **Add a required part** — add it to the numbered recipe in `SKILL.md`, the slot in `references/template.md`, and a check in `scripts/check-readme.mjs`.
-- **Add a visual template** — drop a new `assets/<name>.svg.tmpl` with a comment on how to edit it, and name it in recipe part 3.
-- **Relax a check for a project type** — make it conditional in `check-readme.mjs` on something observable (a file that exists), not on a phrase in the README.
+- **Add a palette or motif:** add a row to the comment block in `assets/logo.svg.tmpl`.
+- **Add a required part:** add it to the recipe in `SKILL.md`, the slot in `references/template.md`, a check in `scripts/check-readme.mjs` and a test in `scripts/check-readme.test.mjs`.
+- **Add a visual template:** drop `assets/<name>.svg.tmpl` with a comment on how to fill it, and name it in the recipe.
 
 ---
 
 ## ❓ FAQ
 
-**Does it overwrite my README?** It rewrites it into the recipe while keeping every true fact and link; the diff shows what moved and what was dropped as stale.
+<details><summary><b>Does it overwrite my README?</b></summary>
 
-**Does it touch code, secrets, or git?** No. It writes `README.md`, files under `docs/assets/`, and a `LICENSE` if none exists. Committing is yours.
+It rewrites it into the recipe and keeps every true fact and link. The diff shows what moved and what was dropped as stale.
+</details>
 
-**What if my project has no tests yet?** The Verify section names the nearest command that passes today and says the real gate cannot run yet; no test badge is invented.
+<details><summary><b>Does it touch code, secrets or git?</b></summary>
 
-**Do I need Mermaid?** No. The hero and the output picture are SVG files that render everywhere; Mermaid appears only as the second diagram in How it works.
+No. It writes `README.md`, files under `docs/assets/`, and a `LICENSE` if none exists. Committing is up to you.
+</details>
 
-**Does it work outside Claude Code?** Yes: Codex CLI and Cursor read the same folder from their own skill roots.
+<details><summary><b>What if I already have a logo?</b></summary>
 
-**Can I change the shape?** Yes; the recipe, template and checker are three small files meant to be edited together.
+It keeps yours and only draws one when there is none, or when you ask for a redraw.
+</details>
+
+<details><summary><b>What if my project has no tests yet?</b></summary>
+
+Verify names the nearest command that passes today and says the real gate can't run yet. No test badge gets invented.
+</details>
+
+<details><summary><b>Does it work outside Claude Code?</b></summary>
+
+Yes. Codex CLI and Cursor read the same folder from their own skill roots.
+</details>
+
+<details><summary><b>Where did writing-readmes go?</b></summary>
+
+This is the same skill, renamed and redesigned. Requests like "write a README" still trigger it, and GitHub redirects the old repo URL.
+</details>
 
 ---
 
 ## 📄 License
 
 [MIT](LICENSE) © 2026 Eran Tzarum
+
+<div align="center"><sub>Made for repos that deserve a second look.</sub></div>

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Writing READMEs"
-  short_description: "Write or update a README in the fixed landing-page shape"
-  default_prompt: "Use $writing-readmes to write or update this repo's README.md, then run its checker."
+  display_name: "readmelyzer"
+  short_description: "Write or redesign a README as a friendly landing page with its own logo"
+  default_prompt: "Use $readmelyzer to write or update this repo's README.md (logo, hook, at-a-glance table), then run its checker."
