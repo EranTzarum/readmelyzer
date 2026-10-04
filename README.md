@@ -10,7 +10,7 @@ Ask your coding agent for a README and get a landing page with its own logo, not
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-8A63D2)](#-quick-start)
 [![Codex CLI](https://img.shields.io/badge/Codex%20CLI-compatible-10a37f)](#-quick-start)
 [![Cursor](https://img.shields.io/badge/Cursor-compatible-000000)](#-quick-start)
-[![Tests](https://img.shields.io/badge/tests-8%20passing-brightgreen)](#-verify)
+[![Tests](https://img.shields.io/badge/tests-9%20passing-brightgreen)](#-verify)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>

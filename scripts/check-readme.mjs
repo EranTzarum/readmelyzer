@@ -3,7 +3,7 @@
 //   node check-readme.mjs [repo-root] [--file README.md]
 // Prints one MISSING line per absent part and exits 1; exits 0 when the shape is complete.
 // Checks structure only (logo, headings, badges, images that exist on disk, blocks) - never writing quality.
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, realpathSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -65,7 +65,9 @@ export function check(root, file = "README.md") {
   return { problems, badges, imgs: imgs.length, sections: sections.length };
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+// realpath both sides: run through a junction/symlink (~/.claude/skills/readmelyzer) the paths differ
+const real = (p) => { try { return realpathSync(p); } catch { return resolve(p); } };
+if (process.argv[1] && real(process.argv[1]) === real(fileURLToPath(import.meta.url))) {
   const args = process.argv.slice(2);
   const root = resolve(args.find((a) => !a.startsWith("--")) ?? ".");
   const fi = args.indexOf("--file");

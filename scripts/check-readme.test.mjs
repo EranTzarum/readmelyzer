@@ -132,3 +132,12 @@ test("filler is reported", () => {
   const p = check(repo(GOOD.replace("Short.", "Welcome to demo."))).problems;
   assert.ok(p.some((x) => x.startsWith("filler")), p.join("\n"));
 });
+
+test("CLI exits 1 on an incomplete README (guards the run-as-script check)", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const { fileURLToPath } = await import("node:url");
+  const d = repo("# just a title\n");
+  const r = spawnSync(process.execPath, [fileURLToPath(new URL("./check-readme.mjs", import.meta.url)), d], { encoding: "utf8" });
+  assert.equal(r.status, 1);
+  assert.match(r.stdout, /MISSING: logo/);
+});
