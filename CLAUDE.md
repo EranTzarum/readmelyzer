@@ -31,3 +31,8 @@ node scripts/check-readme.mjs . --public --all-files
 
 Copies of this skill live in `~/.codex/skills/readmelyzer` and `~/.cursor/skills/readmelyzer`
 (Windows and WSL). Re-sync them after every change.
+
+## Resuming work
+
+Start at `docs/TAKEOVER.md`: state, open items, gate and release steps. The session runs from the umbrella folder and works only inside this repo.
+
