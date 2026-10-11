@@ -1,13 +1,13 @@
 # readmelyzer: takeover
 
-For the session that continues readmelyzer. Read this first, then `CLAUDE.md` and `SKILL.md`, then
+For the session that continues readmelyzer. Read this first, then `AGENTS.md` and `SKILL.md`, then
 the `references/` file for whatever you change.
 
 ## Where this session lives
 
 The session's working folder is the **umbrella** (`AI Development OS/`), so it is listed with the
 manager in the app sidebar. It works **only inside `readmelyzer/`**: edits, commits and pushes
-happen in this repo. The umbrella files (`CLAUDE.md`, `README.md`, `docs/`) belong to the manager
+happen in this repo. The umbrella files (`AGENTS.md`, `README.md`, `docs/`) belong to the manager
 session.
 
 ## State (2026-10-11)
@@ -40,7 +40,7 @@ session.
 
 0. **Migrate the READMEs that now fail the budget** (default checker is red on all of them): readmelyzer (own),
    project-kickoff, prompter, pre-compact, ready, and the umbrella. Until each is migrated, push gates for those repos
-   need `--no-budget` (umbrella `CLAUDE.md` rule is the manager's to change).
+   need `--no-budget` (umbrella `AGENTS.md` rule is the manager's to change).
 
 1. **Private-term coverage depends on the terms file.**
    - When pr-gate went public, the term list missed names used only in prose (an orchestrator's
