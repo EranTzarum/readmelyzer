@@ -7,9 +7,10 @@ User-facing docs: `README.md`. Agent instructions: `SKILL.md`.
 ## Layout
 
 - `SKILL.md`: the workflow (study → brief → layout → design → write → check).
-- `references/`: `archetypes.md`, `logo-guide.md`, `privacy.md`, `template.md` (section modules).
+- `references/`: `archetypes.md` (incl. the above-the-fold budget), `demo-guide.md`, `logo-guide.md`, `privacy.md`, `template.md` (section modules).
 - `assets/*.svg.tmpl`: logo frame, flow hero, terminal output, with palette tokens.
-- `scripts/check-readme.mjs`: structure + privacy checker (Node, no dependencies); `check-readme.test.mjs`: its tests.
+- `scripts/check-readme.mjs`: structure + privacy checker (Node, no dependencies); `check-readme.test.mjs`: its tests. Prints `MISSING:` (structure), `BUDGET:` (pitch, demo, length; `--no-budget` skips) and `LEAK:` (`--public`).
+- `docs/research-readme-patterns.md`: the study behind the budget.
 
 ## Rules
 

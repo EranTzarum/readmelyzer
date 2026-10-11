@@ -13,10 +13,28 @@ add one the project clearly needs. Section snippets live in `template.md`.
 | **Workspace / monorepo** | "Where is what, who owns it?" | map diagram | Logo+hook · Map (table with each package's logo) · Get started · Conventions · Repository map · License | a package table, not a story |
 | **Research / docs** | "What was found, where is the evidence?" | findings chart | Logo+hook · Key findings · Method · Evidence index · How to cite · License | a finding with its source, not a prompt |
 
+## The budget (every archetype)
+
+The table above is the *reference* order. Whatever the archetype, the top of the README follows this
+fixed skeleton, and the checker enforces its limits (`BUDGET:` lines):
+
+| Zone | Content | Limit |
+|---|---|---|
+| Pitch | logo · `# name` · bold hook · badges · **demo** · before / after · **3 benefit cards** | before the first `## `: 40 lines; demo in the first 40 lines; 1 table |
+| Get started | 2-3 commands + a verify line, or the by-hand steps people follow in order | |
+| Example | one copy-paste input and its real output | first example by line 100 |
+| More | links to `docs/*.md`, folded `<details>` for platform variants and short extras | whole README ≤ 160 lines |
+
+What moves to `docs/<topic>.md` (leave one link row): option and flag tables, severity or rule
+lists, engine/platform/model matrices, config reference, "how it works" and internals, the
+repository map, long FAQs, benchmarks and eval numbers. Keep a **fact** if it is true; change its
+home, not its content. Keep in the README: anything a reader must do in order to start.
+
 ## Section rules that hold for every archetype
 
 - **Header:** logo (112 px), `# name`, a bold hook (the benefit), one plain line, badges.
-- **At a glance:** a 3-cell table *You do · It does · You get*, or 2 sentences when a table feels forced.
+- **Benefit cards:** one 3-cell table, each cell a bold lead word and one line. Replaces the old "At a glance" table; it is the only table before the example.
+- **Before / after:** two short blocks, what the reader did by hand and what they do now. Use real numbers only if they are about the project.
 - **Get started:** whatever the archetype calls it (Install, Quick start, Run locally, Use this template), it ends with a **verify** step and its expected output.
 - **One concrete example** somewhere in the first half: real behaviour, anonymized in public mode.
 - **Close:** license link and a one-line footer in the brief's voice.

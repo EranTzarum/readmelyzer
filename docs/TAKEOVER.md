@@ -10,7 +10,7 @@ manager in the app sidebar. It works **only inside `readmelyzer/`**: edits, comm
 happen in this repo. The umbrella files (`CLAUDE.md`, `README.md`, `docs/`) belong to the manager
 session.
 
-## State (2026-10-07)
+## State (2026-10-11)
 
 - **Repo:** public, `main` only. Installed for Claude Code through a junction in
   `~/.claude/skills/readmelyzer`. Codex and Cursor get **copies** (Windows and WSL) in
@@ -29,9 +29,18 @@ session.
   - Files with deliberate fake leaks carry `readmelyzer:allow-examples`.
 - **Used for** the READMEs of every skill in the umbrella and of the umbrella itself. The public
   check is the gate before every push to a public repo there.
+- **Engagement budget (new, local commit, not pushed):** pitch in 40 lines, a demo in the first 40, one table before
+  the first example, example by line 100, README under 160 lines and linked into `docs/`. Rules in `SKILL.md` step 3 and
+  `references/archetypes.md`; demo options in `references/demo-guide.md` (default: hand-written terminal SVG; vhs/asciinema
+  and AI-generated hero images are optional upgrades). Checker prints `BUDGET:`; `--no-budget` skips. Research:
+  `docs/research-readme-patterns.md`. First proof: pr-gate's README (241 → 129 lines, branch `readme-engagement`).
 - **No open issues.**
 
 ## Open items, best first
+
+0. **Migrate the READMEs that now fail the budget** (default checker is red on all of them): readmelyzer (own),
+   project-kickoff, prompter, pre-compact, ready, and the umbrella. Until each is migrated, push gates for those repos
+   need `--no-budget` (umbrella `CLAUDE.md` rule is the manager's to change).
 
 1. **Private-term coverage depends on the terms file.**
    - When pr-gate went public, the term list missed names used only in prose (an orchestrator's

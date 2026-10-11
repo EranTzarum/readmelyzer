@@ -29,7 +29,7 @@ A tiny demo project.
 |---|---|---|
 | run x | builds | a thing |
 
-<p align="center"><img src="docs/assets/hero.svg" alt="hero" width="980"></p>
+<p align="center"><img src="docs/assets/demo.svg" alt="demo" width="980"></p>
 
 ## Install
 \`\`\`bash
@@ -48,7 +48,8 @@ function repo(readme, { logo = LOGO, parent } = {}) {
   const base = parent ?? mkdtempSync(join(tmpdir(), "readmelyzer-"));
   const d = join(base, `r${Math.random().toString(36).slice(2, 8)}`);
   mkdirSync(join(d, "docs", "assets"), { recursive: true });
-  writeFileSync(join(d, "docs", "assets", "hero.svg"), "<svg/>");
+  writeFileSync(join(d, "docs", "assets", "demo.svg"), "<svg/>");
+  writeFileSync(join(d, "docs", "assets", "flow.svg"), "<svg/>");
   if (logo) writeFileSync(join(d, "docs", "assets", "logo.svg"), logo);
   writeFileSync(join(d, "LICENSE"), "MIT");
   writeFileSync(join(d, "README.md"), readme);
@@ -113,4 +114,19 @@ test("CLI exits 1 on an incomplete README (guards the run-as-script check)", () 
   const r = spawnSync(process.execPath, [fileURLToPath(new URL("./check-readme.mjs", import.meta.url)), d], { encoding: "utf8" });
   assert.equal(r.status, 1);
   assert.match(r.stdout, /MISSING: logo/);
+});
+
+test("budget: a diagram-only hero, a late example, extra tables and a long README are reported", () => {
+  assert.ok(has(check(repo(GOOD.replace("docs/assets/demo.svg", "docs/assets/flow.svg"))), "BUDGET: demo"));
+  assert.ok(has(check(repo(GOOD.replace("## Install", `${"filler line\n\n".repeat(60)}## Install`))), "BUDGET: example: first example at line"));
+  assert.ok(has(check(repo(GOOD.replace("## Install", "| a | b |\n|---|---|\n| 1 | 2 |\n\n## Install"))), "BUDGET: tables: 2"));
+  assert.ok(has(check(repo(GOOD + "x\n".repeat(170))), "BUDGET: length"));
+  assert.ok(has(check(repo(GOOD + "x\n\n".repeat(45))), "BUDGET: docs: over 100 lines"));
+  assert.ok(!has(check(repo(GOOD + "x\n\n".repeat(45) + "[more](docs/how-it-works.md)\n")), "BUDGET: docs"));
+});
+
+test("budget: a long pitch before the first section is reported, --no-budget skips all budget checks", () => {
+  const long = GOOD.replace("</div>", "</div>\n\n" + "- pitch\n".repeat(30));
+  assert.ok(has(check(repo(long)), "BUDGET: pitch"));
+  assert.deepEqual(check(repo(long.replace("docs/assets/demo.svg", "docs/assets/flow.svg")), { budget: false }).problems, []);
 });

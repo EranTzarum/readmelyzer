@@ -1,3 +1,6 @@
+<!-- BUDGET (checked): pitch ≤ 40 lines before the first "## ", demo in the first 40 lines, one table (the 3 cards)
+     before the first example, example by line 100, whole README ≤ 160 lines. Modules from "How it works" down are
+     REFERENCE: put each in docs/<topic>.md with one link, or fold it in <details>. -->
 <!-- Module library, not a fixed order. references/archetypes.md picks the modules and their order for this
      project; drop any module with nothing true to say. {{ACCENT_HEX}} = the brief's accent without '#'. -->
 <div align="center">
@@ -17,36 +20,16 @@
 
 ---
 
-## ⚡ TL;DR
-
-| 🧑 You do | ⚙️ It does | 🎁 You get |
-|---|---|---|
-| {{the one command or action}} | {{what happens, in one line}} | {{the outcome you can see}} |
-
-{{At most two sentences of context. Bold the two nouns that matter.}}
-
 <p align="center">
-  <img src="docs/assets/{{hero}}.svg" alt="{{what the picture shows}}" width="980">
+  <img src="docs/assets/demo.svg" alt="{{real output of the one command, see references/demo-guide.md}}" width="860">
 </p>
 
----
+**Before:** {{what the reader did by hand — one or two lines.}}
+**After:** {{what they do now — one line, the command.}}
 
-## 🤔 Why
-
-{{One sentence: the situation before this project existed.}}
-
-| 🔥 What went wrong | 📍 Where | 💸 Cost |
+| ⚡ {{Lead word}} | 🛡️ {{Lead word}} | 🔌 {{Lead word}} |
 |---|---|---|
-| {{real pain}} | {{project / date}} | {{what it cost}} |
-
-{{One sentence: how this project answers each row.}}
-
----
-
-## ✨ Features
-
-- 🧩 **{{Lead words.}}** {{one line naming the mechanism: file, flag, command}}.
-- 🛡️ **{{Lead words.}}** {{…}}.
+| {{one line: the benefit}} | {{one line}} | {{one line}} |
 
 ---
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Structural + privacy check for a README written with readmelyzer.
-//   node check-readme.mjs [repo-root] [--file README.md] [--public] [--all-files]
-// MISSING: a required part is absent.  LEAK: (with --public) private detail found.
+//   node check-readme.mjs [repo-root] [--file README.md] [--public] [--all-files] [--no-budget]
+// MISSING: a required part is absent.  BUDGET: too long / no demo above the fold.  LEAK: (with --public) private detail found.
 // Exit 1 when anything is printed, 0 when clean. Never judges taste - the design brief does that.
 import { readFileSync, existsSync, readdirSync, realpathSync } from "node:fs";
 import { join, resolve, dirname, basename } from "node:path";
@@ -10,6 +10,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const imgsIn = (text) => [...text.matchAll(/<img\s[^>]*src="([^"]+)"/g)].map((m) => m[1]);
+const DEMO = /(demo|terminal|screen|record|session|preview)|\.(gif|png|webp)$/i;
 const DRAWN = /<(rect|path|circle|ellipse|polygon|polyline|line)\b/g; // first match is usually the background tile
 
 export function loadPrivateTerms(file = join(homedir(), ".readmelyzer", "private-terms.txt")) {
@@ -31,7 +32,7 @@ export function findLeaks(text, terms = []) {
   return [...new Set(leaks)];
 }
 
-export function check(root, { file = "README.md", isPublic = false, allFiles = false, terms } = {}) {
+export function check(root, { file = "README.md", isPublic = false, allFiles = false, budget = true, terms } = {}) {
   const path = join(root, file);
   if (!existsSync(path)) return { problems: [`MISSING: ${file} not found in ${root}`] };
   const md = readFileSync(path, "utf8").replace(/\r\n/g, "\n");
@@ -74,6 +75,23 @@ export function check(root, { file = "README.md", isPublic = false, allFiles = f
   if (!/\]\(LICENSE[^)]*\)/.test(md)) miss("license: link to the LICENSE file");
   else if (!existsSync(join(root, "LICENSE")) && !existsSync(join(root, "LICENSE.md"))) miss("license: LICENSE file missing on disk");
 
+  // Budget: engagement first, reference second (references/archetypes.md). Off with --no-budget for repos not yet migrated.
+  if (budget) {
+    const over = (m) => problems.push(`BUDGET: ${m}`);
+    if (!imgsIn(top(40)).some((p) => /^docs\/assets\//.test(p) && !/logo\.svg$/.test(p) && DEMO.test(p)))
+      over("demo: a terminal recording, screenshot or terminal SVG (docs/assets/demo*, terminal*, *.gif/png) in the first 40 lines; a diagram alone is not a demo");
+    const h2 = lines.findIndex((l) => /^## /.test(l));
+    if (h2 > 40) over(`pitch: ${h2} lines before the first section; keep the header, demo and cards within 40`);
+    const ex = lines.findIndex((l) => /^#{2,3} .*(example|try it|recipes?|usage|in action|demo)/i.test(l));
+    if (ex >= 0) {
+      if (ex > 100) over(`example: first example at line ${ex + 1}; show it within the first 100 lines`);
+      const tables = lines.slice(0, ex).filter((l, i, a) => /^\s*\|/.test(l) && !/^\s*\|/.test(a[i - 1] ?? "")).length;
+      if (tables > 1) over(`tables: ${tables} tables before the first example; keep 1 (the benefit cards) and move the rest to docs/`);
+    }
+    if (lines.length > 160) over(`length: ${lines.length} lines; keep the README under 160 and move internals to docs/`);
+    if (lines.length > 100 && !/\]\((\.\/)?docs\/[^)]+\.md/.test(md)) over("docs: over 100 lines with no link to docs/*.md; move reference material there");
+  }
+
   // Voice
   if (/\b(welcome to|in this (document|readme))\b/i.test(md)) miss("voice: filler phrase (\"welcome to\", \"in this document\")");
   let run = 0, longest = 0, fence = false;
@@ -107,7 +125,7 @@ if (process.argv[1] && real(process.argv[1]) === real(fileURLToPath(import.meta.
   const args = process.argv.slice(2);
   const root = resolve(args.find((a) => !a.startsWith("--") && args[args.indexOf(a) - 1] !== "--file") ?? ".");
   const fi = args.indexOf("--file");
-  const r = check(root, { file: fi >= 0 ? args[fi + 1] : "README.md", isPublic: args.includes("--public"), allFiles: args.includes("--all-files") });
+  const r = check(root, { file: fi >= 0 ? args[fi + 1] : "README.md", isPublic: args.includes("--public"), allFiles: args.includes("--all-files"), budget: !args.includes("--no-budget") });
   if (r.problems.length) { for (const p of r.problems) console.log(p); process.exit(1); }
   console.log(`README complete${args.includes("--public") ? " and clean for public" : ""} (logo, ${r.badges} badges, ${r.imgs} images)`);
 }

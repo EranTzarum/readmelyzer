@@ -31,14 +31,31 @@ Visibility:  public (anonymize, see Privacy) | private (specifics allowed)
 
 Ask only if visibility is unclear and the repo holds personal material; otherwise default to **public**.
 
-### 3. Pick the layout from the archetype
+### 3. Engagement first, reference second (the budget)
+
+A README sells first and documents second. Research behind this: `docs/research-readme-patterns.md`.
+Everything above the first `## ` section is the **pitch**, and it must fit one screen (40 lines):
+
+1. logo, `# name`, one bold hook that names the benefit, badges (3-5);
+2. a **demo** in the first 40 lines: a terminal recording, a screenshot, or a terminal SVG of real output (`references/demo-guide.md`). A flow diagram is not a demo;
+3. **before / after** in two short blocks (what you did by hand, what you do now);
+4. **three benefit cards**: one table, three cells, a bold lead word and one line each. This is the only table before the first example;
+5. a **30-second install** (2-3 commands + a verify line), then **one copy-paste example with its real output**, within the first 100 lines.
+
+Everything else is reference. Move it to `docs/<topic>.md` and leave one link, or fold short items in a
+`<details><summary>`: flag and option tables, severity or rule lists, engines/platform matrices, config
+reference, internals and "how it works", the repository map, long FAQs. If the user needs a long install
+by hand (several steps people follow in order), keep those steps in the README below the example; fold
+only the platform variants. Cap: 160 lines, and any README over 100 lines links into `docs/`.
+
+### 4. Pick the layout from the archetype
 
 `references/archetypes.md` gives each archetype its section set, order, hero type and example
 style. Use it as the skeleton; drop any section with nothing true to say, and add one that the
 project clearly needs (e.g. "Screenshots" for an app, "API" for a library). Do not force every
 README into the same order.
 
-### 4. Design the visuals as one system
+### 5. Design the visuals as one system
 
 - **Logo:** draw a custom pictogram of the metaphor, following `references/logo-guide.md`
   (`assets/logo.svg.tmpl` is only the frame). No monogram-in-a-square defaults; two projects never
@@ -47,7 +64,7 @@ README into the same order.
   palette (`{{ACCENT}}`, `{{ACCENT_SOFT}}`, `{{INK}}`) so logo, hero and diagrams match.
 - **Badges:** 3-5, in the palette where shields.io allows (`?color=hex`).
 
-### 5. Write in the brief's voice
+### 6. Write in the brief's voice
 
 | Personality | Sounds like |
 |---|---|
@@ -58,18 +75,18 @@ README into the same order.
 Always: second person, active verbs, short sentences, terms explained the first time,
 paragraphs of 3 lines or fewer, tables for parallel facts. No filler ("welcome", "in this document").
 
-### 6. Examples: real shape, anonymized details
+### 7. Examples: real shape, anonymized details
 
 Every README needs at least one concrete example (input → output). Build it from the real
 behaviour, then apply **Privacy** if public: keep the shape and the lesson, replace the specifics.
 
-### 7. Check
+### 8. Check
 
 ```bash
 node ~/.claude/skills/readmelyzer/scripts/check-readme.mjs <repo-root> [--public]
 ```
 
-Fix every `MISSING:` / `LEAK:` line. The checker covers structure and privacy, never taste: the
+Fix every `MISSING:`, `BUDGET:` and `LEAK:` line. `--no-budget` skips the length and demo checks for a repo not yet migrated; say so when you use it. The checker covers structure and privacy, never taste: the
 brief is how you judge taste.
 
 ## Privacy (public mode)
@@ -92,7 +109,7 @@ Readers on LinkedIn or GitHub should learn how to use the project, not the autho
 - **Study before writing.** Every claim traces to a file.
 - **Updating a README:** keep every true fact and link, re-run the brief, keep an existing logo
   that already fits the brief, and say in the commit message what changed.
-- **Visuals live in `docs/assets/`** as hand-written SVG; no rendering tools needed.
+- **Visuals live in `docs/assets/`**. Default demo: a hand-written terminal SVG, no tools needed. A real recording (vhs, asciinema) or an AI-generated hero image is an upgrade, see `references/demo-guide.md`.
 - **One workspace, distinct identities:** check sibling repos' logos and palettes before choosing.
 - **Run the checker before finishing.** Its output is the definition of done for structure and privacy.
 
@@ -106,3 +123,6 @@ Readers on LinkedIn or GitHub should learn how to use the project, not the autho
 | Hook names the category ("A CLI tool for…") | Name the benefit ("Ship a README people actually read") |
 | Example copied from the author's real work | Keep the shape, invent neutral specifics |
 | Install block without a verify step | Add the test or health command and its expected output |
+| Opens well, then 8 tables and flag lists | Apply the budget: pitch in one screen, reference to `docs/` |
+| Only a flow diagram, no demo | Add a terminal SVG of real output in the first 40 lines |
+| Benefits written as a paragraph | Three cards: bold lead word + one line each |
