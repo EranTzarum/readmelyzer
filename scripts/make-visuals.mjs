@@ -3,7 +3,7 @@
 //   node make-visuals.mjs <spec.json> [out-dir]      (out-dir defaults to the spec's folder)
 // Spec: { palette?, demo?: {title, aria, rows:[{t, text}|null]}, cards?: [{color, title, icon, lines}], stats?: [{n, label, color?}] }
 // Inline colors in demo text: {g:ok} {o:warn} {p:label} {m:muted} {b:bold prompt}. Nothing here invents numbers: every stat comes from the spec.
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, realpathSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -100,7 +100,8 @@ export function build(spec) {
   return out;
 }
 
-const real = (p) => resolve(p);
+// real paths on both sides: run through a junction/symlink, argv[1] is the link but import.meta.url is the target
+const real = (p) => { try { return realpathSync(p); } catch { return resolve(p); } };
 if (process.argv[1] && real(process.argv[1]) === real(fileURLToPath(import.meta.url))) {
   const [specPath, outArg] = process.argv.slice(2);
   if (!specPath) { console.error("usage: make-visuals.mjs <spec.json> [out-dir]"); process.exit(2); }

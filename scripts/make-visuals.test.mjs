@@ -1,6 +1,11 @@
 // node --test scripts/make-visuals.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { mkdtempSync, symlinkSync, writeFileSync, existsSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, dirname } from "node:path";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { build, runs, esc } from "./make-visuals.mjs";
 
 const SPEC = {
@@ -40,4 +45,14 @@ test("esc and runs leave plain text alone and escape markup", () => {
   assert.equal(esc(`a&b<c>"d'`), "a&amp;b&lt;c&gt;&quot;d&#39;");
   assert.equal(runs("plain"), "plain");
   assert.equal(runs("{o:x}"), '<tspan fill="#f0883e" font-weight="bold">x</tspan>');
+});
+
+test("CLI writes the SVGs when run through a junction/symlink (how the skill is installed)", () => {
+  const d = mkdtempSync(join(tmpdir(), "mv-link-"));
+  const link = join(d, "scripts");
+  symlinkSync(dirname(fileURLToPath(import.meta.url)), link, "junction");
+  writeFileSync(join(d, "spec.json"), JSON.stringify(SPEC));
+  const r = spawnSync(process.execPath, [join(link, "make-visuals.mjs"), join(d, "spec.json")], { encoding: "utf8" });
+  assert.equal(r.status, 0, r.stderr);
+  for (const f of ["demo.svg", "cards.svg", "stats.svg"]) assert.ok(existsSync(join(d, f)), `${f} written`);
 });
