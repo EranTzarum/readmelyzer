@@ -7,8 +7,9 @@ User-facing docs: `README.md`. Agent instructions: `SKILL.md`.
 ## Layout
 
 - `SKILL.md`: the workflow (study → brief → layout → design → write → check).
-- `references/`: `archetypes.md` (incl. the above-the-fold budget), `demo-guide.md`, `logo-guide.md`, `privacy.md`, `template.md` (section modules).
+- `references/`: `archetypes.md` (incl. the above-the-fold budget), `demo-guide.md`, `visual-kit.md`, `logo-guide.md`, `privacy.md`, `template.md` (section modules).
 - `assets/*.svg.tmpl`: logo frame, flow hero, terminal output, with palette tokens.
+- `scripts/make-visuals.mjs` (+ test): demo/cards/stats SVGs from a JSON spec (`references/visual-kit.md`).
 - `scripts/check-readme.mjs`: structure + privacy checker (Node, no dependencies); `check-readme.test.mjs`: its tests. Prints `MISSING:` (structure), `BUDGET:` (pitch, demo, length; `--no-budget` skips) and `LEAK:` (`--public`).
 - `docs/research-readme-patterns.md`: the study behind the budget.
 
@@ -26,7 +27,7 @@ User-facing docs: `README.md`. Agent instructions: `SKILL.md`.
 ## Gate
 
 ```bash
-node --test scripts/check-readme.test.mjs
+node --test scripts/check-readme.test.mjs scripts/make-visuals.test.mjs
 node scripts/check-readme.mjs . --public --all-files
 ```
 

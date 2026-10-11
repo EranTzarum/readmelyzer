@@ -20,7 +20,7 @@ fixed skeleton, and the checker enforces its limits (`BUDGET:` lines):
 
 | Zone | Content | Limit |
 |---|---|---|
-| Pitch | logo · `# name` · bold hook · badges · **demo** · before / after · **3 benefit cards** | before the first `## `: 40 lines; demo in the first 40 lines; 1 table |
+| Pitch | logo · `# name` · bold hook · tool badges (`for-the-badge`, logos) · **demo** (animated terminal) · optional stat tiles · before / after · **3 benefit cards** | before the first `## `: 40 lines; demo in the first 40 lines; 1 table |
 | Get started | 2-3 commands + a verify line, or the by-hand steps people follow in order | |
 | Example | one copy-paste input and its real output | first example by line 100 |
 | More | links to `docs/*.md`, folded `<details>` for platform variants and short extras | whole README ≤ 160 lines |
@@ -33,7 +33,8 @@ home, not its content. Keep in the README: anything a reader must do in order to
 ## Section rules that hold for every archetype
 
 - **Header:** logo (112 px), `# name`, a bold hook (the benefit), one plain line, badges.
-- **Benefit cards:** one 3-cell table, each cell a bold lead word and one line. Replaces the old "At a glance" table; it is the only table before the example.
+- **Benefit cards:** an SVG card image (icon, color, 3-4 short lines each) built by `scripts/make-visuals.mjs`; a one-row 3-cell table is the fallback. Replaces the old "At a glance" table.
+- **Stat tiles (optional):** 3-4 colored tiles of true numbers about the project (tests, runs, minutes). Skip when there is nothing true to count.
 - **Before / after:** two short blocks, what the reader did by hand and what they do now. Use real numbers only if they are about the project.
 - **Get started:** whatever the archetype calls it (Install, Quick start, Run locally, Use this template), it ends with a **verify** step and its expected output.
 - **One concrete example** somewhere in the first half: real behaviour, anonymized in public mode.

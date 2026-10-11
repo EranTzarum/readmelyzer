@@ -58,7 +58,7 @@ session.
 ## Gate
 
 ```bash
-node --test scripts/check-readme.test.mjs
+node --test scripts/check-readme.test.mjs scripts/make-visuals.test.mjs
 node scripts/check-readme.mjs . --public --all-files
 ```
 

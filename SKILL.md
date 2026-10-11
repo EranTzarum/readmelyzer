@@ -36,10 +36,10 @@ Ask only if visibility is unclear and the repo holds personal material; otherwis
 A README sells first and documents second. Research behind this: `docs/research-readme-patterns.md`.
 Everything above the first `## ` section is the **pitch**, and it must fit one screen (40 lines):
 
-1. logo, `# name`, one bold hook that names the benefit, badges (3-5);
+1. logo, `# name`, one bold hook that names the benefit, a row of 4-6 **`for-the-badge` badges with logos in brand colors** (tools it works with, runtime, tests, license);
 2. a **demo** in the first 40 lines: a terminal recording, a screenshot, or a terminal SVG of real output (`references/demo-guide.md`). A flow diagram is not a demo;
 3. **before / after** in two short blocks (what you did by hand, what you do now);
-4. **three benefit cards**: one table, three cells, a bold lead word and one line each. This is the only table before the first example;
+4. **three benefit cards**: an SVG card image with icon, color and 3-4 short lines each (a one-row table is the fallback), and optionally a strip of **stat tiles** with 3-4 true numbers from the repo (tests, rounds, minutes, runs). At most 1 table before the first example;
 5. a **30-second install** (2-3 commands + a verify line), then **one copy-paste example with its real output**, within the first 100 lines.
 
 Everything else is reference. Move it to `docs/<topic>.md` and leave one link, or fold short items in a
@@ -56,6 +56,9 @@ project clearly needs (e.g. "Screenshots" for an app, "API" for a library). Do n
 README into the same order.
 
 ### 5. Design the visuals as one system
+
+**Visual kit (default, no external services):** write one `docs/assets/visuals.json` and run
+`node ~/.claude/skills/readmelyzer/scripts/make-visuals.mjs docs/assets/visuals.json`. It writes `demo.svg` (animated terminal, loops, honors reduced motion), `cards.svg` and `stats.svg`. Every number and line comes from the repo, never invented. Details: `references/visual-kit.md`.
 
 - **Logo:** draw a custom pictogram of the metaphor, following `references/logo-guide.md`
   (`assets/logo.svg.tmpl` is only the frame). No monogram-in-a-square defaults; two projects never

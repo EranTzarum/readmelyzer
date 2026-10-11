@@ -1,4 +1,4 @@
-<!-- BUDGET (checked): pitch ≤ 40 lines before the first "## ", demo in the first 40 lines, one table (the 3 cards)
+<!-- BUDGET (checked): pitch ≤ 40 lines before the first "## ", demo in the first 40 lines, at most one table
      before the first example, example by line 100, whole README ≤ 160 lines. Modules from "How it works" down are
      REFERENCE: put each in docs/<topic>.md with one link, or fold it in <details>. -->
 <!-- Module library, not a fixed order. references/archetypes.md picks the modules and their order for this
@@ -12,24 +12,28 @@
 **{{HOOK — the benefit in one bold line, e.g. "Long prompts in, finished work out."}}**
 {{ONE PLAIN LINE — what the reader gets, in words a newcomer knows.}}
 
-[![{{Runtime}}](https://img.shields.io/badge/{{Runtime}}-{{kind}}-{{ACCENT_HEX}})](#-quick-start)
-[![Tests](https://img.shields.io/badge/tests-{{N}}%20passing-brightgreen)](#-verify)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+<a href="#-quick-start"><img src="https://img.shields.io/badge/{{Tool}}-{{BRAND_HEX}}?style=for-the-badge&logo={{simple-icons-slug}}&logoColor=white" alt="{{Tool}}"></a>
+<a href="#-quick-start"><img src="https://img.shields.io/badge/tests-{{N}}_passing-16A34A?style=for-the-badge" alt="{{N}} tests passing"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-052E16?style=for-the-badge" alt="MIT license"></a>
+<!-- 4-6 for-the-badge badges: one per tool/runtime it works with (logo = a simple-icons slug, color = the tool's brand color), then tests and license. -->
+
+<br>
+
+<img src="docs/assets/demo.svg" alt="{{real output of the one command}}" width="860">
+
+<br>
+
+<img src="docs/assets/stats.svg" alt="{{N}} tests passing, {{other true numbers}}" width="860">
 
 </div>
-
----
-
-<p align="center">
-  <img src="docs/assets/demo.svg" alt="{{real output of the one command, see references/demo-guide.md}}" width="860">
-</p>
 
 **Before:** {{what the reader did by hand — one or two lines.}}
 **After:** {{what they do now — one line, the command.}}
 
-| ⚡ {{Lead word}} | 🛡️ {{Lead word}} | 🔌 {{Lead word}} |
-|---|---|---|
-| {{one line: the benefit}} | {{one line}} | {{one line}} |
+<p align="center">
+  <img src="docs/assets/cards.svg" alt="{{the three benefits, as text}}" width="860">
+</p>
+<!-- demo.svg, stats.svg and cards.svg come from docs/assets/visuals.json via scripts/make-visuals.mjs (references/visual-kit.md). -->
 
 ---
 

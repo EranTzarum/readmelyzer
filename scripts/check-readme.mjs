@@ -65,6 +65,11 @@ export function check(root, { file = "README.md", isPublic = false, allFiles = f
   const imgs = imgsIn(md);
   if (!imgsIn(top(60)).some((p) => /^docs\/assets\//.test(p) && !/logo\.svg$/.test(p))) miss("hero: an image under docs/assets (not the logo) in the first 60 lines");
   for (const p of imgs) if (!/^https?:/.test(p) && !existsSync(join(root, p))) miss(`image referenced but missing on disk: ${p}`);
+  for (const p of new Set(imgs)) { // a quote inside an attribute (font-family="a, "B"") silently breaks the image
+    if (!/.svg$/.test(p) || /^https?:/.test(p) || !existsSync(join(root, p))) continue;
+    const svg = readFileSync(join(root, p), "utf8");
+    if (!/<svg[\s/>]/.test(svg) || !/(<\/svg>|<svg[^>]*\/>)\s*$/.test(svg) || /<[a-zA-Z][^<>]*\s[\w:-]+="[^"<>]*"(?=[^\s/>])/.test(svg)) miss(`image is not well-formed SVG: ${p}`);
+  }
   const start = section("quick\\s*start|install|get(ting)? started|run locally|use this template|setup");
   if (!start) miss("get started: a Quick start / Install / Get started / Run locally section");
   else {

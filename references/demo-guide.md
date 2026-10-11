@@ -5,7 +5,7 @@ option that shows the truth.
 
 | Option | When | Cost |
 |---|---|---|
-| **Terminal SVG (default)** | Any CLI, skill or script with text output | None. Copy `assets/terminal.svg.tmpl` to `docs/assets/demo.svg`, fill 6-14 lines of real output |
+| **Animated terminal SVG (default)** | Any CLI, skill or script with text output | None. `scripts/make-visuals.mjs` writes `docs/assets/demo.svg` from `docs/assets/visuals.json` (6-12 lines of real output, loops, honors reduced motion). `assets/terminal.svg.tmpl` is the static fallback |
 | **Screenshot** (PNG, 1200 px wide max) | An app, a UI, a TUI | A screenshot with demo data only |
 | **Terminal recording → GIF** | Something that moves: a prompt, a progress bar, an interactive picker | `vhs` (a `.tape` file → GIF, scriptable, reproducible) or `asciinema` + `agg`. Install them only when the user agrees |
 | **AI-generated hero image** (optional) | A brand-style banner or illustration above the demo, never instead of it | Codex, ChatGPT or Gemini. See below |

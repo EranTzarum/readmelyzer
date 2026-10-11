@@ -130,3 +130,12 @@ test("budget: a long pitch before the first section is reported, --no-budget ski
   assert.ok(has(check(repo(long)), "BUDGET: pitch"));
   assert.deepEqual(check(repo(long.replace("docs/assets/demo.svg", "docs/assets/flow.svg")), { budget: false }).problems, []);
 });
+
+test("a malformed SVG (quote inside an attribute) is reported, a valid one passes", () => {
+  const bad = repo(GOOD);
+  writeFileSync(join(bad, "docs", "assets", "demo.svg"), '<svg xmlns="x" font-family="a, "B", c"><rect/></svg>');
+  assert.ok(has(check(bad), "not well-formed SVG: docs/assets/demo.svg"));
+  const ok = repo(GOOD);
+  writeFileSync(join(ok, "docs", "assets", "demo.svg"), "<svg xmlns=\"x\" font-family=\"a, 'B', c\"><rect/></svg>");
+  assert.deepEqual(check(ok).problems, []);
+});
