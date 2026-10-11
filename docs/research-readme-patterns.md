@@ -51,3 +51,25 @@ pr-gate's README is 241 lines. Above the first screen: logo, tagline, 4 badges, 
 | One copy-paste example with real output | present, but after ~120 lines |
 | Internals out of the README | engines, severity rules, lean runs, repo map all inline |
 | Hard length budget | none (the checker caps paragraphs only) |
+
+## Addendum: what makes a README look engaging (visual study, 2026-10-11)
+
+Added after the first pass read as correct but plain. Sources: the owner's profile README
+(`EranTzarum/EranTzarum`) plus [ruflo/claude-flow](https://github.com/ruvnet/claude-flow),
+[browser-use](https://github.com/browser-use/browser-use), [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill),
+[opencode](https://github.com/sst/opencode), [mem0](https://github.com/mem0ai/mem0) and [repomix](https://github.com/yamadashy/repomix).
+
+| What | Seen in | Why it works |
+|---|---|---|
+| **`for-the-badge` badges with logos, in brand colors**, grouped by role (tools, runtimes) | profile README (~35), ruflo, ui-ux-pro-max | Color and recognizable logos make a row of tools scannable in one glance |
+| **Dashboard tiles**: stats cards, a streak card, a languages card, one theme (`radical`) | profile README | Numbers in colored tiles read as "alive, maintained"; one theme keeps it coherent |
+| **Animated header or demo** (animated SVG/GIF banner, a screencast) | ruflo (neon GIF, animated console SVG), aider (animated SVG), vhs/gum GIFs | Motion at the top is the strongest hook; it needs no tools when written as SVG + CSS |
+| **Feature cards as images** in a 2x2 or 1x3 grid, each with an icon and a color | ruflo (linked SVG cards), aider (icon + sentence) | Cards beat a text table for 3 benefits |
+| **Light/dark `<picture>`** logos and diagrams | browser-use, opencode, repomix | Looks native in both GitHub themes |
+| **Emoji or small icons in headings** used consistently | profile README, ruflo (custom SVG icons), repomix | A cheap visual rhythm; inconsistent use (repomix) looks careless |
+| **One screenshot or demo image right under the title** | browser-use, opencode, ui-ux-pro-max (800 px), mem0 (banner) | Proof before prose |
+| **Collapsed `<details>` for the long tail** | ruflo (heavy), browser-use FAQ (10 blocks) | Keeps a 550-line README feeling short |
+
+Cautions seen: promo blocks above the pitch (lazygit, fzf, repomix sponsors), mixed badge styles on one page (repomix), 1000+ line reference READMEs with no visuals (bat), and third-party widget services that can break (github-readme-stats, streak-stats): prefer self-contained SVGs written into `docs/assets/` for anything the README depends on; use live widgets only when the owner already runs them.
+
+Applied to pr-gate (branch `readme-engagement`): six `for-the-badge` tool/test badges, an animated terminal demo (SVG + CSS, loops, honors reduced-motion), four stat tiles, three SVG feature cards. All generated, self-contained, leak-checked.
