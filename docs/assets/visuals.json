@@ -1,0 +1,30 @@
+{
+  "palette": { "dark": "#1E1B4B", "mid": "#9F1239", "soft": "#FDA4AF", "prompt": "#FB7185" },
+  "demo": {
+    "title": "readmelyzer · photo-renamer",
+    "aria": "Terminal: readmelyzer writes a six-line design brief for a photo-renaming CLI, then the checker reports the README complete and clean for public",
+    "rows": [
+      { "t": 0.4, "text": "{b:> }write a README for this project" },
+      { "t": 1.4, "text": "{p:Archetype:}   CLI" },
+      { "t": 2.0, "text": "{p:Audience:}    people with messy photo folders" },
+      { "t": 2.6, "text": "{p:Personality:} friendly + tidy" },
+      { "t": 3.2, "text": "{p:Metaphor:}    a camera whose photos fall into dated folders" },
+      { "t": 3.8, "text": "{p:Palette:}     ink #1F2937, accent #10B981, soft #D1FAE5" },
+      { "t": 4.4, "text": "{p:Visibility:}  public" },
+      null,
+      { "t": 6.2, "text": "{b:$ }node check-readme.mjs . --public --all-files" },
+      { "t": 7.4, "text": "README complete and clean for public {g:(logo, 6 badges, 11 images)}" }
+    ]
+  },
+  "cards": [
+    { "color": "#F43F5E", "title": "Studies first", "icon": "search", "lines": ["Reads the tree, manifest,", "tests and docs. Every", "claim traces to a file."] },
+    { "color": "#6366F1", "title": "Its own look", "icon": "bolt", "lines": ["A logo drawn for the idea,", "in the project's own", "palette, voice and layout."] },
+    { "color": "#F59E0B", "title": "Safe to share", "icon": "shield", "lines": ["Public mode anonymizes", "paths, emails, private", "names and real prompts."] }
+  ],
+  "stats": [
+    { "n": "7", "label": "archetypes" },
+    { "n": "6", "label": "lines in the brief" },
+    { "n": "18", "label": "tests passing" },
+    { "n": "0", "label": "dependencies" }
+  ]
+}

@@ -28,7 +28,7 @@ User-facing docs: `README.md`. Agent instructions: `SKILL.md`.
 
 ```bash
 node --test scripts/check-readme.test.mjs scripts/make-visuals.test.mjs
-node scripts/check-readme.mjs . --public --all-files --no-budget   # own README not migrated yet, see docs/TAKEOVER.md
+node scripts/check-readme.mjs . --public --all-files
 ```
 
 Copies of this skill live in `~/.codex/skills/readmelyzer` and `~/.cursor/skills/readmelyzer`

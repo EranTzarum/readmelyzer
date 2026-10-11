@@ -33,14 +33,15 @@ session.
   the first example, example by line 100, README under 160 lines and linked into `docs/`. Rules in `SKILL.md` step 3 and
   `references/archetypes.md`; demo options in `references/demo-guide.md` (default: hand-written terminal SVG; vhs/asciinema
   and AI-generated hero images are optional upgrades). Checker prints `BUDGET:`; `--no-budget` skips. Research:
-  `docs/research-readme-patterns.md`. First proof: pr-gate's README (241 → 129 lines, branch `readme-engagement`).
+  `docs/research-readme-patterns.md`. Proofs: pr-gate's README (241 → 133 lines) and readmelyzer's own (209 → 109 lines), both from `docs/assets/visuals.json`.
 - **No open issues.**
 
 ## Open items, best first
 
-0. **Migrate the READMEs that now fail the budget** (default checker is red on all of them): readmelyzer (own),
-   project-kickoff, prompter, pre-compact, ready, and the umbrella. Until each is migrated, push gates for those repos
-   need `--no-budget` (umbrella `AGENTS.md` rule is the manager's to change).
+0. **Migrate the READMEs that still fail the budget**: project-kickoff, prompter, pre-compact, ready, and the umbrella
+   (readmelyzer and pr-gate are done). Until each is migrated, its push gate needs `--no-budget` (the umbrella
+   `AGENTS.md` rule is the manager's to change). Method: write `docs/assets/visuals.json`, run `scripts/make-visuals.mjs`,
+   move internals to `docs/`, keep every true fact.
 
 1. **Private-term coverage depends on the terms file.**
    - When pr-gate went public, the term list missed names used only in prose (an orchestrator's
