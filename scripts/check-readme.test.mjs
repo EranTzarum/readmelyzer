@@ -101,6 +101,12 @@ test("findLeaks catches user paths, emails and private terms as whole words", ()
   assert.ok(!findLeaks("Copyright Danaher", ["dana"]).length, "whole words only");
 });
 
+test("findLeaks does not read package@version as an email", () => {
+  const specs = "npx -y @google/design.md@0.4.0, npm i left-pad@1.3.0, pkg@2.0.0-rc.1, pkg@1.0.0-alpha.beta, @scope/name@10.2.3";
+  assert.deepEqual(findLeaks(specs), []);
+  assert.deepEqual(findLeaks(`${specs}, write to someone@company.io`), ["email: someone@company.io"]);
+});
+
 test("--public reports leaks in README and its SVGs; clean README passes", () => {
   const d = repo(GOOD.replace("Input a, output b.", "Run it in C:\\Users\\dana\\shop."));
   const r = check(d, { isPublic: true, terms: ["shop"] });
