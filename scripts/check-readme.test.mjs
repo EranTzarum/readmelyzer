@@ -102,7 +102,7 @@ test("findLeaks catches user paths, emails and private terms as whole words", ()
 });
 
 test("findLeaks does not read package@version as an email", () => {
-  const specs = "npx -y @google/design.md@0.4.0, npm i left-pad@1.3.0, pkg@2.0.0-rc.1, @scope/name@10.2.3";
+  const specs = "npx -y @google/design.md@0.4.0, npm i left-pad@1.3.0, pkg@2.0.0-rc.1, pkg@1.0.0-alpha.beta, @scope/name@10.2.3";
   assert.deepEqual(findLeaks(specs), []);
   assert.deepEqual(findLeaks(`${specs}, write to someone@company.io`), ["email: someone@company.io"]);
 });
