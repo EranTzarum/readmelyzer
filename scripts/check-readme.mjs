@@ -23,7 +23,8 @@ export function findLeaks(text, terms = []) {
   const add = (kind, m) => leaks.push(`${kind}: ${m.trim().slice(0, 60)}`);
   for (const m of text.matchAll(/\b[A-Za-z]:[\\/]{1,2}Users[\\/]{1,2}[^\\/\s"'`)<>]+/g)) add("user path", m[0]);
   for (const m of text.matchAll(/(?<![\w.~])\/(?:home|Users)\/(?!<)[A-Za-z0-9._-]+/g)) add("user path", m[0]);
-  for (const m of text.matchAll(/\b[\w.+-]+@[\w-]+\.[\w.-]+\b/g))
+  // TLD must be letters, so npm specs like design.md@0.4.0 are not emails
+  for (const m of text.matchAll(/\b[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[A-Za-z]{2,}\b/g))
     if (!/@(example\.(com|org)|users\.noreply\.github\.com)$/i.test(m[0])) add("email", m[0]);
   for (const t of terms) {
     const re = new RegExp(`(?<![\\w-])${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w-])`, "gi");
